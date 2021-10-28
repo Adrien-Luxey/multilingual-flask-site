@@ -1,0 +1,34 @@
+.top-bar .site-title {
+  /*font-family: 'Comic Sans MS';*/
+  font-weight: bold;
+  color: #fefefe;
+  font-size: 1.6rem;
+}
+
+.top-bar .top-bar-right .menu li .button {
+  margin-left: .5rem;
+}
+
+.flashed-message {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+#header {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+#footer {
+  border-top: 1px solid #888;
+  margin-top: 3rem;
+  padding-bottom: 1.2rem;
+}
+
+#footer .menu {
+  padding-top: 1.2rem;
+}
+
+#footer .menu a {
+  line-height: inherit;
+}

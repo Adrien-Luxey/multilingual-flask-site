@@ -1,0 +1,99 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+  {% block head %}
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    {% block title %}{% endblock %} - {{ _('Multilingual Flask site') }}
+  </title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/foundation.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+  <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+  {% endblock %}
+</head>
+
+<body>
+  <div class="top-bar">
+    {% if request.view_args['page'] != 'index' %}
+    <div class="top-bar-left">
+      <a class="site-title" href="{{ url_for('frontend.static', page='index') }}">{{_('Home')}}</a>
+    </div>
+    {% endif %}
+
+    <div class="top-bar-right">
+      <ul class="menu">
+        <li><a href="{{ url_for('frontend.static', page=request.view_args['page'], lang_code='fr') }}" class="clear button">Français 🇫🇷</a></li>
+        <li><a href="{{ url_for('frontend.static', page=request.view_args['page'], lang_code='en') }}" class="clear button active">English 🇬🇧</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="grid-container">
+    <div class="grid-x grid-padding-x">
+      {% for (category, message) in get_flashed_messages(with_categories=true) %}
+      <div class="flash large-12 cell">
+        {% if category == 'warning' %}
+        <div class="warning callout flashed-message">
+          {{ message }}
+        </div>
+        {% else %}
+        <div class="primary callout flashed-message">
+          {{ message }}
+        </div>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+
+    <header id="header">
+      <div class="grid-x grid-padding-x align-justify">
+        <div class="small-12 medium-6 large-auto cell">
+          <h1>{% block page_title %}{% endblock %}</h1>
+        </div>
+        <div class="small-12 medium-6 large-shrink cell">
+          <h1 class="subtitle text-right"><small>{% block page_subtitle %}{% endblock %}</small></h1>
+        </div>
+      </div>
+    </header>
+
+    <section id="content">
+      {% block content %}{% endblock %}
+
+      {# DEBUG
+      <ul>
+        <li>Endpoint: {{ request.endpoint }}</li>
+        <li>Path: {{ request.path }}</li>
+        <li>View args: {{ request.view_args }}</li>
+        <li>Config: {{ config }}</li>
+      </ul>
+      #}
+    </section>
+
+
+    <section id="footer">
+      {% block footer %}
+      <div class="grid-x grid-padding-x align-justify">
+        <div class="small-12 medium-shrink cell">
+          <ul class="menu">
+            <li><a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank">{{ _('No rights reserved') }}</a></li>
+          </ul>
+        </div>
+
+        <div class="small-12 medium-auto cell">
+          <ul class="menu simple align-right">
+            <li><a href="https://github.com/Adrien-Luxey/multilingual-flask-site">{{_('Source code')}}</a></li>
+            <li><a href="{{ url_for('frontend.static', page='privacy') }}">{{_('Privacy policy')}}</a></li>
+          </ul>
+        </div>
+      </div>
+      {% endblock %}
+    </section>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/foundation.js') }}"></script>
+</body>
+
+</html>

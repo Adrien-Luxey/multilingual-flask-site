@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}{{_('Welcome')}}{% endblock %}
+
+
+{% block page_title %}
+{{_('My multilingual site')}}
+{% endblock %}
+
+{% block page_subtitle %}
+{{_('Is a wonderful sight')}}
+{% endblock %}
+
+{% block content %}
+<div class="grid-x grid-padding-x">
+  <div class="large-12 cell">
+    <p>{{_("Today's gonna be a good day!")}}</p>
+  </div>
+</div>
+{% endblock %}
